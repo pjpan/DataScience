@@ -1,0 +1,1 @@
+install.packages("Rweibo", repos = "http://R-Forge.R-project.org")
