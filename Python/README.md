@@ -13,7 +13,10 @@
 #### useful paper*blog
 - RNN,CNN,LSTM大讲堂---[karpathy](http://karpathy.github.io/)
 - 优秀论文--[arxiv](https://arxiv.org/)
+- [详解CNN](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/)
+- [增强学习](http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html)
+
 
 #### 训练神经网络的例子；
 - [A stacked bidirectional RNN network](https://github.com/simaaron/kaggle-Rain)
-- 
+-
