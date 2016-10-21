@@ -5,3 +5,5 @@
 Inception_BN-0039.params
 .Rproj.user
 *.Rproj
+*.zip
+*-ubyte
