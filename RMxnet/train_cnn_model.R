@@ -89,9 +89,10 @@ get_symbols <- function(img)
   return(out)
 }
 
-
 # 
-mx.
+mx.model.FeedForward.create(symbol = get_symbols, X = img, y = "1")
+
+
 
 
 
