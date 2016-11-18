@@ -6,7 +6,7 @@ library(imager)
 # it means prefix = 'Inception_BN', iteration = '39'
 # iteration should be equal to the export file.
 # first para should be prefix，not a filename；
-  model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)  
+model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)  
 graph.viz(model$symbol$as.json())
 
 # Inception-BN-0126.params
@@ -39,8 +39,10 @@ preproc.image <- function(im, mean.image) {
   return(normed)
 }
 
+# 
+dim(mx.nd.array(normed))
 # get the normaled image;
-normed <- preproc.image(im, mean.img)
+normed <- preproc.image(im, 113.90)
 dim(normed)
 # predict 
 prob <- predict(model, X = normed)
@@ -55,4 +57,14 @@ max.idx
 # see the very category
 synsets <- readLines("./inception-bn/synset.txt")
 print(paste0("Predicted Top-class: ", synsets[[max.idx]]))
+
+model$arg.params$bn_4a_double_3x3_1_gamma
+
+
+
+
+
+
+
+
 
