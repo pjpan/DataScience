@@ -54,7 +54,7 @@ get_lenet <- function() {
   pool2 <- mx.symbol.Pooling(data=tanh2, pool_type="max",
                              kernel=c(2,2), stride=c(2,2))
   # first fullc
-  flatten <- mx.symbol.Flatten(data=pool2)
+  flatten <- mx.symbol.Flatten(data=pool2) # 数据从N维变成1维；
   fc1 <- mx.symbol.FullyConnected(data=flatten, num_hidden=500)
   # tanh3 <- mx.symbol.Activation(data=fc1, act_type="tanh")
   # # second fullc
@@ -86,11 +86,15 @@ get_symbols <- function(img)
                                  no.bias = T, stride = c(2, 2))
   
   out = mx.symbol.Concat(list(conv_r, conv_g, conv_b),num.args = 3)
+  
   return(out)
 }
 
 # 
-mx.model.FeedForward.create(symbol = get_symbols, X = img, y = "1")
+mx.model.FeedForward.create(symbol = get_symbols, X = img, y = c(1))
+
+
+
 
 
 

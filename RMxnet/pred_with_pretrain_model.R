@@ -58,6 +58,7 @@ max.idx
 synsets <- readLines("./inception-bn/synset.txt")
 print(paste0("Predicted Top-class: ", synsets[[max.idx]]))
 
+# 
 model$arg.params$bn_4a_double_3x3_1_gamma
 
 

@@ -9,8 +9,8 @@ test.x = data.matrix(BostonHousing[-train.ind, -14])
 test.y = BostonHousing[-train.ind, 14]
 
 # define the network
-data <- mx.symbol.Variable("data")
-fc1 <- mx.symbol.FullyConnected(data, num_hidden=1)
+data <- mx.symbol.Variable("data")  
+fc1 <- mx.symbol.FullyConnected(data, num_hidden=1) # 全连接层要串联的是一维数组；
 
 # the data should be 4D in batch-num_filter-y-x
 # cn1 <- mx.symbol.Convolution(data=fc1, kernel=c(2,2), num_filter = 50)

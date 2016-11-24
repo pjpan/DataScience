@@ -40,7 +40,6 @@ for(i in 3){
   }
 }
 
-
 # img.process 2
 #  mxnet neeed img format( width, height, channel, num)
 im <- load.image(system.file("extdata/parrots.png", package = "imager"))
