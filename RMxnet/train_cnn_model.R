@@ -85,12 +85,15 @@ get_symbols <- function(img)
                                  ,num.filter = 1,kernel = c(3, 3), pad = c(1, 1),
                                  no.bias = T, stride = c(2, 2))
   
-  out = mx.symbol.Concat(list(conv_r, conv_g, conv_b),num.args = 3)
+  conc_rgb = mx.symbol.Concat(list(conv_r, conv_g, conv_b),num.args = 3)
+  
+  out = mx.symbol.Flatten(conc_rgb)
   
   return(out)
 }
 
-# 
+#
+x = as.matrix(img)
 mx.model.FeedForward.create(symbol = get_symbols, X = img, y = c(1))
 
 
