@@ -6,8 +6,11 @@ library(imager)
 # it means prefix = 'Inception_BN', iteration = '39'
 # iteration should be equal to the export file.
 # first para should be prefix，not a filename；
-model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)  
+model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)
 graph.viz(model$symbol$as.json())
+
+internals <- model$symbol$get.internals()
+internals$outputs
 
 # Inception-BN-0126.params
 
