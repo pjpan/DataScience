@@ -9,10 +9,9 @@ library(imager)
 model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)
 graph.viz(model$symbol$as.json())
 
+# 查看中间层
 internals <- model$symbol$get.internals()
 internals$outputs
-
-# Inception-BN-0126.params
 
 # load in the mean image
 mean.img <- as.array(mx.nd.load("./inception-bn/mean_224.nd")[["mean_img"]])
@@ -45,7 +44,7 @@ preproc.image <- function(im, mean.image) {
 # 
 dim(mx.nd.array(normed))
 # get the normaled image;
-normed <- preproc.image(im, 113.90)
+normed <- preproc.image(im, 224)
 dim(normed)
 # predict 
 prob <- predict(model, X = normed)

@@ -8,10 +8,9 @@ sys.path.append(os.path.join(curr_path, "../python"))
 import mxnet as mx
 import random
 import argparse
-# import cv2   # replace to skimage
+import cv2   # replace to skimage
 import time
 import traceback
-import skimage as cv2
 
 
 def list_image(root, recursive, exts):
