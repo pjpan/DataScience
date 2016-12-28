@@ -9,6 +9,8 @@ library(imager)
 model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)
 graph.viz(model$symbol$as.json())
 
+model$arg.params
+
 # 查看中间层
 internals <- model$symbol$get.internals()
 internals$outputs

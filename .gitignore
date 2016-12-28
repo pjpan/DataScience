@@ -13,3 +13,5 @@ inception-bn*
 *.png
 *.7z
 *.rec
+*.params
+*.json
