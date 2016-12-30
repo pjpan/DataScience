@@ -3,6 +3,7 @@ library(imager)
 
 
 list_image <- function(root, recursive, exts) {
+  i <- 0
   image_list <- NULL
   if(recursive) {
     cat <- NULL
@@ -19,7 +20,6 @@ list_image <- function(root, recursive, exts) {
 image_encode <- function(args, item, q_out){
   
   img <- load.image()
-  
   
 }
 
