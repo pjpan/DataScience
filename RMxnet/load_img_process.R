@@ -8,7 +8,6 @@ nrow = length(list.files(work_path))
 im <- NULL
 # i <- 1
 
-
 # load the data and transform to size(1,3,244,244)
 PreprocessImage <- function(path,show_img = T){
   
@@ -30,14 +29,6 @@ PreprocessImage <- function(path,show_img = T){
   normed_img = normed_img /128.
   # print("transformed Image Shape:", dim(normed_img))
   return(normed_img)
-}
-
-# load img file
-for(i in 3){
-  if(list.files(work_path)[i]){
-    path = paste0(work_path, list.files(work_path)[1])
-    img  <- PreprocessImage(path)
-  }
 }
 
 # img.process 2
@@ -70,7 +61,6 @@ preproc.image <- function(im, mean.image) {
 normed <- preproc.image(im, mean.image = 128)
 plot(normed)
 
-# 
 
 
 

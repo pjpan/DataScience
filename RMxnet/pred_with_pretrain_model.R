@@ -5,13 +5,13 @@ library(imager)
 # Inception_BN-0039
 # it means prefix = 'Inception_BN', iteration = '39'
 # iteration should be equal to the export file.
-# first para should be prefix，not a filename；
+# first para should be prefix，not a filename�?
 model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)
 graph.viz(model$symbol$as.json())
 
 model$arg.params
 
-# 查看中间层
+# 查看中间�?
 internals <- model$symbol$get.internals()
 internals$outputs
 
@@ -46,10 +46,10 @@ preproc.image <- function(im, mean.image) {
 # 
 dim(mx.nd.array(normed))
 # get the normaled image;
-normed <- preproc.image(im, 224)
-dim(normed)
+# normed <- preproc.image(im, 224)
+# dim(normed)
 # predict 
-prob <- predict(model, X = normed)
+prob <- predict(model, X = mx.nd.array(normed))
 dim(prob)
 
 model$symbol$arguments

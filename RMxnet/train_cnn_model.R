@@ -30,13 +30,6 @@ PreprocessImage <- function(path,show_img = T){
   return(normed_img)
 }
 
-# load img file
-for(i in 3){
-  if(list.files(work_path)[i]){
-    path = paste0(work_path, list.files(work_path)[i])
-    img  <- PreprocessImage(path)
-  }
-}
 
 # train a cnn network
 library(mxnet)
@@ -54,7 +47,7 @@ get_lenet <- function() {
   pool2 <- mx.symbol.Pooling(data=tanh2, pool_type="max",
                              kernel=c(2,2), stride=c(2,2))
   # first fullc
-  flatten <- mx.symbol.Flatten(data=pool2) # 数据从N维变成1维；
+  flatten <- mx.symbol.Flatten(data=pool2) # 数据从N维变�?1维；
   fc1 <- mx.symbol.FullyConnected(data=flatten, num_hidden=500)
   # tanh3 <- mx.symbol.Activation(data=fc1, act_type="tanh")
   # # second fullc
@@ -65,7 +58,7 @@ get_lenet <- function() {
   return(fc1)
 }
 
-# 根据channel来进行卷积,并拼成同一个数组；
+# 根据channel来进行卷�?,并拼成同一个数组；
 get_symbols <- function(img)
 {
   nchannel = dim(img)[2]

@@ -10,8 +10,11 @@ Inception_BN-0039.params
 inception-bn.tar.gz
 inception-bn*
 .ipynb_checkpoints
-*.png
 *.7z
 *.rec
 *.params
 *.json
+*.pyc
+
+*.png
+*.jpg
