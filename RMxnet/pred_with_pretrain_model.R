@@ -6,22 +6,20 @@ library(imager)
 # it means prefix = 'Inception_BN', iteration = '39'
 # iteration should be equal to the export file.
 # first para should be prefix，not a filename�?
-model <- mx.model.load("./inception-bn/Inception-BN", iteration = 126)
+model <- mx.model.load("D:/gitcode/kaggle-BoschProductionLinePerformance/Inception/Inception_BN", iteration = 39)
 graph.viz(model$symbol$as.json())
 
-model$arg.params
+summary(model)
 
 # 查看中间�?
 internals <- model$symbol$get.internals()
 internals$outputs
 
-# load in the mean image
-mean.img <- as.array(mx.nd.load("./inception-bn/mean_224.nd")[["mean_img"]])
-summary(mean.img)
-
 # load and preprocess the image
 im <- load.image(system.file("extdata/parrots.png", package = "imager"))
 plot(im)
+
+mean.img <- as.array(mx.nd.load("D:/gitcode/kaggle-BoschProductionLinePerformance/Inception/mean_224.nd")[["mean_img"]])
 
 # preproce image to the uniform
 preproc.image <- function(im, mean.image) {
@@ -37,22 +35,16 @@ preproc.image <- function(im, mean.image) {
   arr <- as.array(resized) * 255
   dim(arr) <- c(224, 224, 3)
   # subtract the mean
-  normed <- arr - mean.image
+  normed <- arr - mean.img
   # Reshape to format needed by mxnet (width, height, channel, num)
   dim(normed) <- c(224, 224, 3, 1)
   return(normed)
 }
 
-# 
-dim(mx.nd.array(normed))
 # get the normaled image;
-# normed <- preproc.image(im, 224)
-# dim(normed)
+img_t <- preproc.image(im, mean.img)
 # predict 
-prob <- predict(model, X = mx.nd.array(normed))
-dim(prob)
-
-model$symbol$arguments
+prob <- predict(model, X = mx.nd.array(img_t))
 
 # select the top prob
 max.idx <- max.col(t(prob))
@@ -61,11 +53,6 @@ max.idx
 # see the very category
 synsets <- readLines("./inception-bn/synset.txt")
 print(paste0("Predicted Top-class: ", synsets[[max.idx]]))
-
-# 
-model$arg.params$bn_4a_double_3x3_1_gamma
-
-
 
 
 

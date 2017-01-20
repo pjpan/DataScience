@@ -1,45 +1,37 @@
 # mxnet notes
-### how to transform image file into MX format
-
+### transform imagefiles
 #### tools
 - [im2rec.py](https://github.com/dmlc/mxnet/tree/e7514fe1b3265aaf15870b124bb6ed0edd82fa76/tools)
->transform image file to mx format type.Image RecordIO
-- image.lst:configuration
-> integer_image_index \t label_index \t path_to_image
 
-#### samples
-- binary Labels
-```
-./bin/im2rec image.lst image_root_dir output.bin resize=256
-```
-- image.list sample
-```
-895099  464     n04467665_17283.JPEG
-10025081        412     ILSVRC2010_val_00025082.JPEG
-74181   789     n01915811_2739.JPEG
-10035553        859     ILSVRC2010_val_00035554.JPEG
-10048727        929     ILSVRC2010_val_00048728.JPEG
-94028   924     n01980166_4956.JPEG
-1080682 650     n11807979_571.JPEG
-972457  633     n07723039_1627.JPEG
-```
+针对原始数据，两种存储方法
 
-- Multiple Labels
+1、第一种是把同一个类别的图片放在同一个文件夹内，然后用文件夹来进行区别；
+- 用im2rec先生成img.lst,参数定义--list true 表示生成的是img.lst
+- 用im2rec生成rec文件；
+- im2rec.py  prefix 数据源 其他参数，前两个是必选的；
+
+2、把所有的图片文件放在一个大文件夹内；
+- 自己手动生成lst文件；
+- 用im2rec生成rec文件；
+
+第一步生成的img.lst的语法如下：
+### make image list
 ```
-integer_image_index \t label_1 \t label_2 \t label_3 \t label_4 \t path_to_image
-```
-```
-./bin/im2rec image.lst image_root_dir output.bin resize=256 label_width=4
+python im2rec.py /data1/ILSVRC2012/train/  /data1/ILSVRC2012/train_raw --train-ratio=0.7 --test-ratio=0.2 --list=True --recursive=True --resize=227
+python ~/mxnet/tools/im2rec.py --list True --recursive True caltech-256-60-train caltech_256_train_60/
+python ~/mxnet/tools/im2rec.py --resize 256 --quality 90 --num-thread 16 caltech-256-60-val 256_ObjectCategories/
 ```
 
-- mx.io.ImageRecordIter
+output:
+> /data1/ILSVRC2012/train_test.lst
+/data1/ILSVRC2012/train_train.lst
+/data1/ILSVRC2012/train_val.lst
+
+### create rec
 ```
-dataiter = mx.io.ImageRecordIter(
-  path_imgrec="data/cifar/train.rec",
-  data_shape=(3,28,28),
-  path_imglist="data/cifar/image.lst",
-  label_width=4              # Multiple Labels
-)
+python im2rec.py /data1/ILSVRC2012/train/  /data1/ILSVRC2012/train_raw --num-thread=28  --recursive=True --resize=227
 ```
 
-## how to deal with picture
+#### Q&A
+-  label_index should be integer not a string；
+integer_image_index \t label_index \t path_to_image

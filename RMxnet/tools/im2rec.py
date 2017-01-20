@@ -8,10 +8,9 @@ sys.path.append(os.path.join(curr_path, "../python"))
 import mxnet as mx
 import random
 import argparse
-import cv2   # replace to skimage
+import cv2
 import time
 import traceback
-
 
 def list_image(root, recursive, exts):
     i = 0
@@ -53,7 +52,7 @@ def make_list(args):
         random.shuffle(image_list)
     N = len(image_list)
     chunk_size = (N + args.chunks - 1) / args.chunks
-    for i in xrange(args.chunks):
+    for i in range(args.chunks):
         chunk = image_list[i * chunk_size:(i + 1) * chunk_size]
         if args.chunks > 1:
             str_chunk = '_%d' % i
@@ -202,7 +201,7 @@ def parse_args():
     return args
 
 if __name__ == '__main__':
-    args = parse_args()    
+    args = parse_args()
     if args.list:
         make_list(args)
     else:
