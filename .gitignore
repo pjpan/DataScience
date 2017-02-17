@@ -15,6 +15,5 @@ inception-bn*
 *.params
 *.json
 *.pyc
-
 *.png
 *.jpg
