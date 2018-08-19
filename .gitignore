@@ -17,3 +17,5 @@ inception-bn*
 *.pyc
 *.png
 *.jpg
+*.Dstore
+*.icloud
