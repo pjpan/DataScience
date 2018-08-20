@@ -113,13 +113,14 @@ def classify_process():
                 print("* Batch size: {}".format(batch.shape))
                 preds = model.predict(batch)
                 results = imagenet_utils.decode_predictions(preds)
+                print(results)
 
             # loop over the image IDs and their corresponding set of result from our model
                 for (imageID, resultSet) in zip(imageIDs, results):
                     output = []
 
                     # loop over the results and add them to the list of output predictions
-                    for (imageID, label, prob) in resultSet:
+                    for (imagenetID, label, prob) in resultSet:
                         r = {"label": label, "probability": float(prob)}
                         output.append(r)
 
@@ -170,11 +171,12 @@ def predict():
 
                 # sleep for a small amount to give the model a chance to classify the input image
                 time.sleep(CLIENT_SLEEP)
+
             # indicate that the request was a success
             data["success"] = True
 
-        # return the data dictionary as a JSON response
-        return flask.jsonify(data)
+    # return the data dictionary as a JSON response
+    return flask.jsonify(data)
 
 
 # if this is the main thread of execution first load the model and then start the server
