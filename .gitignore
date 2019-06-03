@@ -1,4 +1,4 @@
-.idea
+
 *.csv
 *.Rdata
 *.wmv
@@ -17,5 +17,3 @@ inception-bn*
 *.pyc
 *.png
 *.jpg
-*.Dstore
-*.icloud
